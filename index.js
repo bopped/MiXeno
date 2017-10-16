@@ -1,15 +1,12 @@
 const request = require('request').defaults({gzip: true});
 const fs = require('fs');
+const config = require("./config")
 
-// How many entries you want
-const ENTRIES = 500;
-const firstName = 'John';
-const lastName = 'Biggens';
+const ENTRIES = config.ENTRIES;
+const firstName = config.firstName;
+const lastName = config.lastName;
 // YYYY-MM-DD
-const dateOfBirth = '1984-08-08';
-// What number you want the emails to start on
-const startingIndex = 81529;
-// Change email on line 44
+const dateOfBirth = config.dateOfBirth;
 
 function formatProxy(proxy) {
     if (proxy && ['localhost', ''].indexOf(proxy) < 0) {
@@ -34,14 +31,14 @@ function main() {
     }
     console.log('Found ' + proxyList.length + ' proxies.');
 
-    for(let i = startingIndex; i < startingIndex + ENTRIES; i++) {
+    for(let i = 0; i < ENTRIES; i++) {
         /*
         For the email, leave ${i} where you want the number to appear
     
         If you want to use the gmail + method you can do something like this  ->  ultraboost+${i}@gmail.com
         If you have a catchall domain, you don't need a + , like this         ->  ultraboost${i}@customdomain.com
         */
-        const email = `ultraboost${i}@deadass.win`
+        const email = (config.email.replace("${i}",i))
     
         request({
             method: 'post',

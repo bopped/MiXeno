@@ -1,0 +1,7 @@
+{
+    "ENTRIES": 500, 
+    "firstName": "simmy",
+    "lastName":"singh",
+    "dateOfBirth":"1984-08-08",
+    "email":"simmysgmail+${i}.com"
+}
